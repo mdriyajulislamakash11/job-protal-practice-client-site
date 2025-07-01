@@ -4,9 +4,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from './AuthProvider';
 
 const Register = () => {
-  const { createUser } = useContext(AuthContext);
+  const { registerUser, googleLogin } = useContext(AuthContext);
   const [error, setError] = useState('');
   const navigate = useNavigate();
+
+
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -21,7 +23,7 @@ const Register = () => {
       return setError("Password must be at least 6 characters.");
     }
 
-    createUser(email, password)
+    registerUser(email, password)
       .then((result) => {
         // Optional: update profile with display name
         result.user.displayName = name;
@@ -31,6 +33,16 @@ const Register = () => {
         setError(err.message);
       });
   };
+
+
+ // google login:
+  const handleGoogleogin = () =>{
+    googleLogin()
+    .then(result => {
+        console.log(result)
+    })
+
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
@@ -81,6 +93,10 @@ const Register = () => {
         <p className="text-sm text-center text-gray-600 mt-4">
           Already have an account? <Link to="/login" className="text-blue-600 hover:underline">Login</Link>
         </p>
+      </div>
+      {/* google login */}
+      <div>
+            <button onClick={handleGoogleogin}  className='btn'>Google</button>
       </div>
     </div>
   );
