@@ -1,8 +1,11 @@
-import React from "react";
-import { useParams } from "react-router-dom";
+import React, { useContext } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { AuthContext } from "../auth/AuthProvider";
 
 const JobApply = () => {
   const { id } = useParams();
+  const {user} = useContext(AuthContext)
+  const navigate = useNavigate()
 
   const handleJobApply = (e) => {
     e.preventDefault();
@@ -10,6 +13,27 @@ const JobApply = () => {
     const github = form.github.value;
     const linkdin = form.linkdin.value;
     const resume = form.resume.value;
+
+    const jobApplyer = {
+        job_Id: id,
+        applicant_email: user.email,
+        github,
+        linkdin,
+        resume,
+    }
+
+    fetch(`http://localhost:5000/job-applications`, {
+        method: "POST",
+        headers: {
+            "content-type" : "application/json"
+        },
+        body: JSON.stringify(jobApplyer)
+    })
+    .then(res => res.json())
+    .then(data => {
+        console.log(data)
+        navigate("/myApplication")
+    })
 
     
 
