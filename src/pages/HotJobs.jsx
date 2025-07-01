@@ -1,6 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import JobsCard from "./JobsCard";
 
 const HotJobs = () => {
+
+    const [jobs, setSobs] = useState([])
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/jobs`)
+        .then(res => res.json())
+        .then(data => {
+            setSobs(data)
+        })
+    }, [])
+
+
   return (
     <div>
       <div className="text-center my-16">
@@ -15,9 +28,9 @@ const HotJobs = () => {
 
 
         {/* Jobs Card */}
-        <div>
+        <div className="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {
-                
+               jobs.map((job) => <JobsCard key={job._Id} job={job} />) 
             }
         </div>
 
