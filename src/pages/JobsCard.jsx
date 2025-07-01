@@ -1,7 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const JobCard = ({ job }) => {
   const {
+    _id,
     title,
     location,
     jobType,
@@ -86,9 +88,10 @@ const JobCard = ({ job }) => {
 
       {/* Apply Button */}
       <div className="text-right">
+        <Link to={`/jobDetails/${_id}`}>
         <button className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-md text-sm">
-          Apply Now
-        </button>
+          View Details
+        </button></Link>
       </div>
     </div>
   );
