@@ -6,6 +6,7 @@ const MyApplication = () => {
     const [jobs, setJobs] = useState([])
     const {user} = useContext(AuthContext)
     
+    // 
     useEffect(() => {
         fetch(`http://localhost:5000/job-Application?email=${user.email}`)
         .then(res => res.json())
