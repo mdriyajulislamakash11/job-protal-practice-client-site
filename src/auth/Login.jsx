@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { AuthContext } from "./AuthProvider";
+import axios from "axios";
 
 const Login = () => {
   const { loginUser } = useContext(AuthContext);
@@ -19,7 +20,16 @@ const Login = () => {
 
     loginUser(email, password)
       .then((result) => {
-        navigate(from, { replace: true });
+        console.log(result)
+
+        const user = {email: email};
+        axios.post(`http://localhost:5000/jwt`, user, )
+        .then(res => {
+          console.log(res)
+        })
+
+
+        navigate(from);
       })
       .catch((err) => {
         setError(err.message);
