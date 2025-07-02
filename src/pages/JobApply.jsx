@@ -15,7 +15,7 @@ const JobApply = () => {
     const resume = form.resume.value;
 
     const jobApplyer = {
-        job_Id: id,
+        job_id: id,
         applicant_email: user.email,
         github,
         linkdin,

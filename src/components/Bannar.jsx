@@ -6,35 +6,42 @@ import 'swiper/css/pagination';
 
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 
+// https://i.ibb.co/fVwsTT9h/slid-1.jpg
+// https://i.ibb.co/tTBkFV13/slid-2.jpg
+// https://i.ibb.co/F44NtFLf/slid-3.jpg
+// https://i.ibb.co/TMmRd0h5/slid-4.webp
+// https://i.ibb.co/999NH4Ms/slid-5.jpg
+// https://i.ibb.co/Dfgwpsyb/slid-6.jpg
+
 const Bannar = () => {
   const slides = [
     {
-      image: 'https://source.unsplash.com/1600x700/?nature,water',
+      image: 'https://i.ibb.co/tTBkFV13/slid-2.jpg',
       title: 'Explore the Beauty of Water',
       description: 'Dive into serenity and feel the nature around you.',
     },
     {
-      image: 'https://source.unsplash.com/1600x700/?nature,forest',
+      image:  "https://i.ibb.co/fVwsTT9h/slid-1.jpg" ,
       title: 'Walk Through The Forest',
       description: 'Find peace and adventure in every step.',
     },
     {
-      image: 'https://source.unsplash.com/1600x700/?nature,mountain',
+      image: 'https://i.ibb.co/F44NtFLf/slid-3.jpg',
       title: 'Climb the Highest Mountains',
       description: 'Experience heights like never before.',
     },
     {
-      image: 'https://source.unsplash.com/1600x700/?nature,beach',
+      image: 'https://i.ibb.co/TMmRd0h5/slid-4.webp',
       title: 'Relax at the Sunny Beaches',
       description: 'Let the waves wash away your worries.',
     },
     {
-      image: 'https://source.unsplash.com/1600x700/?nature,sky',
+      image: 'https://i.ibb.co/999NH4Ms/slid-5.jpg',
       title: 'Reach for the Sky',
       description: 'Dream big, aim higher.',
     },
     {
-      image: 'https://source.unsplash.com/1600x700/?nature,sunset',
+      image: 'https://i.ibb.co/Dfgwpsyb/slid-6.jpg',
       title: 'Witness the Golden Hour',
       description: 'Enjoy nature’s perfect goodbye.',
     },
