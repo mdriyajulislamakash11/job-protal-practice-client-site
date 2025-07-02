@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../auth/AuthProvider";
+import { Link } from "react-router-dom";
 
 const MyPostedJobs = () => {
   const [jobs, setJobs] = useState([]);
   const { user } = useContext(AuthContext);
 
-  console.log(jobs)
+  console.log(jobs);
 
   useEffect(() => {
     fetch(`http://localhost:5000/jobs?email=${user?.email}`)
@@ -17,7 +18,6 @@ const MyPostedJobs = () => {
 
   return (
     <div className="m-20">
-      
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}
@@ -40,7 +40,11 @@ const MyPostedJobs = () => {
                 <td>{job.applicationDeadline}</td>
                 <td>{job.applicationCount}</td>
                 <td>
-                  <p className="text-blue-800 font-bold">View Applications</p>
+                  <Link to={`/viewApplications/${job._id}`}>
+                    <button className="text-blue-800 font-bold">
+                      View Applications
+                    </button>
+                  </Link>
                 </td>
                 <td>
                   <button className="btn px-10">E</button>
