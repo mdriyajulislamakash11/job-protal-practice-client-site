@@ -11,7 +11,7 @@ const MainLayOute = () => {
             <Navbar />
 
             {/* dynamic pages */}
-            <div>
+            <div className='min-h-[calc(100vh-340px)]'>
                 <Outlet />
             </div>
 
