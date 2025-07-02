@@ -1,4 +1,3 @@
-import React from "react";
 import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 
@@ -7,12 +6,11 @@ const ViewApplication = () => {
   console.log(application);
 
   const handleStatusUpdate = (e, id) => {
-
     const data = {
       status: e.target.value,
     };
 
-    fetch(`https://jobprotal-delta.vercel.app/job_applications/${id}`, {
+    fetch(`http://localhost:5000/job-applications/${id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
