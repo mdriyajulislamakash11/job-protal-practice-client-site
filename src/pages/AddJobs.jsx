@@ -1,6 +1,9 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const AddJobs = () => {
+  const navigate = useNavigate()
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -40,6 +43,7 @@ const AddJobs = () => {
         console.log("Job Added:", data);
         form.reset();
         alert("Job posted successfully!");
+        navigate("/mypostedJobs")
       });
   };
 
