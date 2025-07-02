@@ -9,6 +9,7 @@ import JobDetails from "../pages/JobDetails";
 import JobApply from "../pages/JobApply";
 import Login from "../auth/Login";
 import Register from "../auth/Register";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -17,43 +18,64 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home />
+        element: <Home />,
       },
       {
         path: "/allJobs",
-        element: <AllJobs />
+        element: <AllJobs />,
       },
       {
         path: "/myApplication",
-        element: <MyApplication />
+        element: (
+          <PrivateRoute>
+            <MyApplication />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/AddJobs",
-        element: <AddJobs />
+        element: (
+          <PrivateRoute>
+            <AddJobs />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/mypostedJobs",
-        element: <MyPostedJobs />
+        element: (
+          <PrivateRoute>
+            <MyPostedJobs />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/login",
-        element: <Login />
+        element: <Login />,
       },
       {
         path: "/register",
-        element: <Register />
+        element: <Register />,
       },
       {
         path: "/jobApply/:id",
-        element: <JobApply />
+        element: (
+          <PrivateRoute>
+            <JobApply />,
+          </PrivateRoute>
+        ),
       },
       {
         path: "/jobDetails/:id",
-        element: <JobDetails />,
-        loader: ({params}) => fetch(`http://localhost:5000/jobs/${params.id}`)
+        element: (
+          <PrivateRoute>
+            <JobDetails />,
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/jobs/${params.id}`),
       },
     ],
   },
 ]);
 
-export default router
+export default router;
