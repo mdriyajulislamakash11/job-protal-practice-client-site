@@ -1,19 +1,30 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../auth/AuthProvider";
+import axios from "axios";
 
 const MyApplication = () => {
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
   const { user } = useContext(AuthContext);
 
-  console.log(jobs)
+  console.log(typeof jobs);
 
-  // ডেটা ফেচ করো
+  console.log(jobs);
+
   useEffect(() => {
-    fetch(`http://localhost:5000/job-Application?email=${user?.email}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setJobs(data);
+    // fetch(`http://localhost:5000/job-Application?email=${user?.email}`, {withCredentials: true,})
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     setJobs(data);
+    //     setLoading(false);
+    //   })
+    axios
+      .get(`http://localhost:5000/job-application?email=${user?.email}`, {
+        withCredentials: true,
+      })
+      .then((response) => {
+        setJobs(response.data);
+        console.log(response.data)
         setLoading(false);
       })
       .catch((error) => {
@@ -65,7 +76,9 @@ const MyApplication = () => {
                     </div>
                     <div>
                       <div className="font-bold">{job.company_name}</div>
-                      <div className="text-sm opacity-50">{job.company_location}</div>
+                      <div className="text-sm opacity-50">
+                        {job.company_location}
+                      </div>
                     </div>
                   </div>
                 </td>
@@ -73,7 +86,9 @@ const MyApplication = () => {
                 <td>{job.category}</td>
                 <td>
                   <div className="font-medium">{job.applicant_name}</div>
-                  <div className="text-sm opacity-60">{job.applicant_email}</div>
+                  <div className="text-sm opacity-60">
+                    {job.applicant_email}
+                  </div>
                 </td>
                 <td>
                   <button className="btn btn-outline btn-sm">Details</button>

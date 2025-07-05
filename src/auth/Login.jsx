@@ -20,16 +20,15 @@ const Login = () => {
 
     loginUser(email, password)
       .then((result) => {
-        console.log(result)
+        console.log(result);
 
-        const user = {email: email};
-        axios.post(`http://localhost:5000/jwt`, user, {withCredentials: true})
-        .then(res => {
-          console.log(res)
-        })
-
-
-        navigate(from);
+        const user = { email: email };
+        axios
+          .post(`http://localhost:5000/jwt`, user, { withCredentials: true })
+          .then((res) => {
+            console.log(res);
+            navigate(from || "/");
+          });
       })
       .catch((err) => {
         setError(err.message);
